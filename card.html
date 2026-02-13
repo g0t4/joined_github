@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>GitHub Anniversary</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 675px;
+    overflow: hidden;
+    background: #0d1117;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    width: 1200px;
+    height: 675px;
+    background: #0d1117;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Grid background */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(46, 164, 79, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 164, 79, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Radial glow center */
+  .glow-center {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46, 164, 79, 0.12) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Corner accents */
+  .corner {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-color: rgba(46, 164, 79, 0.3);
+    border-style: solid;
+  }
+  .corner-tl { top: 32px; left: 32px; border-width: 2px 0 0 2px; }
+  .corner-tr { top: 32px; right: 32px; border-width: 2px 2px 0 0; }
+  .corner-bl { bottom: 32px; left: 32px; border-width: 0 0 2px 2px; }
+  .corner-br { bottom: 32px; right: 32px; border-width: 0 2px 2px 0; }
+
+  /* Main content */
+  .content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #2ea44f;
+    margin-bottom: 16px;
+  }
+
+  .years-container {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .years-number {
+    font-size: 200px;
+    font-weight: 900;
+    letter-spacing: -8px;
+    background: linear-gradient(135deg, #ffffff 0%, #58a6ff 40%, #2ea44f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(46, 164, 79, 0.4));
+    line-height: 0.85;
+  }
+
+  .years-label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .years-word {
+    font-size: 52px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .years-sub {
+    font-size: 52px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .date-line {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.05em;
+    margin-top: 18px;
+    margin-bottom: 40px;
+  }
+
+  .date-line span {
+    color: rgba(255,255,255,0.75);
+    font-weight: 600;
+  }
+
+  /* Stats row */
+  .stats {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 40px;
+  }
+
+  .stat + .stat {
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -1px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 2px;
+  }
+
+  /* Handle */
+  .handle {
+    position: absolute;
+    bottom: 44px;
+    right: 52px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  /* GitHub mark */
+  .gh-mark {
+    position: absolute;
+    bottom: 40px;
+    left: 52px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.25);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  .gh-mark svg {
+    opacity: 0.3;
+  }
+
+  /* Decorative horizontal line */
+  .divider {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(46,164,79,0.5), transparent);
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="grid"></div>
+  <div class="glow-center"></div>
+
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <div class="content">
+    <div class="eyebrow">GitHub Anniversary</div>
+
+    <div class="years-container">
+      <div class="years-number">16</div>
+      <div class="years-label">
+        <div class="years-word">years</div>
+        <div class="years-sub">on GitHub</div>
+      </div>
+    </div>
+
+    <div class="date-line">
+      Member since <span>January 11, 2010</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">270</div>
+        <div class="stat-label">Repos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">994</div>
+        <div class="stat-label">Followers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">37</div>
+        <div class="stat-label">Gists</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gh-mark">
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="white">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    github.com/g0t4
+  </div>
+
+  <div class="handle">@g0t4</div>
+</div>
+</body>
+</html>
