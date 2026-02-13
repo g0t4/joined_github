@@ -145,43 +145,64 @@
   .experience-badge {
     display: flex;
     align-items: center;
-    gap: 12px;
-    border: 1px solid rgba(46, 164, 79, 0.5);
-    border-radius: 4px;
-    padding: 10px 24px;
+    gap: 20px;
+    border: 1px solid rgba(46, 164, 79, 0.45);
+    border-radius: 6px;
+    padding: 14px 32px;
     margin-bottom: 28px;
-    background: rgba(46, 164, 79, 0.08);
+    background: rgba(46, 164, 79, 0.07);
+  }
+
+  .experience-badge .exp-hours {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
   }
 
   .experience-badge .exp-value {
-    font-size: 22px;
-    font-weight: 800;
+    font-size: 36px;
+    font-weight: 900;
     color: #2ea44f;
-    letter-spacing: -0.5px;
+    letter-spacing: -1.5px;
+  }
+
+  .experience-badge .exp-unit {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(46, 164, 79, 0.7);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   .experience-badge .exp-divider {
     width: 1px;
-    height: 20px;
-    background: rgba(46, 164, 79, 0.35);
+    height: 36px;
+    background: rgba(46, 164, 79, 0.3);
+  }
+
+  .experience-badge .exp-right {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .experience-badge .exp-multiple {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+  }
+
+  .experience-badge .exp-multiple span {
+    color: #2ea44f;
   }
 
   .experience-badge .exp-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-  }
-
-  .experience-badge .exp-label em {
-    font-style: normal;
-    color: rgba(255,255,255,0.2);
-    font-weight: 400;
     font-size: 11px;
-    display: block;
+    font-weight: 400;
     letter-spacing: 0.1em;
-    margin-top: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
   }
 
   /* Stats row */
@@ -282,11 +303,14 @@
     </div>
 
     <div class="experience-badge">
-      <div class="exp-value">≥ 16 YRS</div>
+      <div class="exp-hours">
+        <div class="exp-value">33,582</div>
+        <div class="exp-unit">hrs</div>
+      </div>
       <div class="exp-divider"></div>
-      <div class="exp-label">
-        Full-Time Developer Experience
-        <em>assuming full-time since day one</em>
+      <div class="exp-right">
+        <div class="exp-multiple"><span>3.4×</span> the 10,000 hour rule</div>
+        <div class="exp-label">full-time since Jan 11, 2010 · 40 hrs/wk</div>
       </div>
     </div>
 
