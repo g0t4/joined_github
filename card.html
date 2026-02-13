@@ -357,10 +357,11 @@
   <div class="handle">@g0t4</div>
 </div>
 <script>
-  const JOIN_DATE = new Date('2010-01-11T18:41:24Z');
   const HOURS_PER_WEEK = 40;
+  let JOIN_DATE = null;
 
   function calc() {
+    if (!JOIN_DATE) return null;
     const now = new Date();
     const ms = now - JOIN_DATE;
     const weeks = ms / (7 * 24 * 60 * 60 * 1000);
@@ -371,14 +372,21 @@
   }
 
   function update() {
-    const { hours, years, multiple } = calc();
+    const result = calc();
+    if (!result) return;
+    const { hours, years, multiple } = result;
     document.getElementById('years-number').textContent = years;
     document.getElementById('exp-hours-value').textContent = hours.toLocaleString();
     document.getElementById('exp-multiple-value').textContent = multiple + '×';
   }
 
-  update();
-  setInterval(update, 60 * 1000);
+  fetch('https://api.github.com/users/g0t4')
+    .then(r => r.json())
+    .then(data => {
+      JOIN_DATE = new Date(data.created_at);
+      update();
+      setInterval(update, 60 * 1000);
+    });
 </script>
 </body>
 </html>
