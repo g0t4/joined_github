@@ -134,12 +134,54 @@
     color: rgba(255,255,255,0.45);
     letter-spacing: 0.05em;
     margin-top: 18px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   .date-line span {
     color: rgba(255,255,255,0.75);
     font-weight: 600;
+  }
+
+  .experience-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(46, 164, 79, 0.5);
+    border-radius: 4px;
+    padding: 10px 24px;
+    margin-bottom: 28px;
+    background: rgba(46, 164, 79, 0.08);
+  }
+
+  .experience-badge .exp-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: #2ea44f;
+    letter-spacing: -0.5px;
+  }
+
+  .experience-badge .exp-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(46, 164, 79, 0.35);
+  }
+
+  .experience-badge .exp-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .experience-badge .exp-label em {
+    font-style: normal;
+    color: rgba(255,255,255,0.2);
+    font-weight: 400;
+    font-size: 11px;
+    display: block;
+    letter-spacing: 0.1em;
+    margin-top: 1px;
   }
 
   /* Stats row */
@@ -237,6 +279,15 @@
 
     <div class="date-line">
       Member since <span>January 11, 2010</span>
+    </div>
+
+    <div class="experience-badge">
+      <div class="exp-value">≥ 16 YRS</div>
+      <div class="exp-divider"></div>
+      <div class="exp-label">
+        Full-Time Developer Experience
+        <em>assuming full-time since day one</em>
+      </div>
     </div>
 
     <div class="stats">
