@@ -275,6 +275,22 @@
     background: linear-gradient(to bottom, transparent, rgba(46,164,79,0.5), transparent);
     margin: 0 auto;
   }
+
+  /* Live pulse dot */
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2ea44f;
+    box-shadow: 0 0 6px #2ea44f;
+    animation: pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.7); }
+  }
 </style>
 </head>
 <body>
@@ -291,7 +307,7 @@
     <div class="eyebrow">GitHub Anniversary</div>
 
     <div class="years-container">
-      <div class="years-number">16</div>
+      <div class="years-number" id="years-number">16</div>
       <div class="years-label">
         <div class="years-word">years</div>
         <div class="years-sub">on GitHub</div>
@@ -304,14 +320,15 @@
 
     <div class="experience-badge">
       <div class="exp-hours">
-        <div class="exp-value">33,582</div>
+        <div class="exp-value" id="exp-hours-value">33,582</div>
         <div class="exp-unit">hrs</div>
       </div>
       <div class="exp-divider"></div>
       <div class="exp-right">
-        <div class="exp-multiple"><span>3.4×</span> the 10,000 hour rule</div>
+        <div class="exp-multiple"><span id="exp-multiple-value">3.4×</span> the 10,000 hour rule</div>
         <div class="exp-label">full-time since Jan 11, 2010 · 40 hrs/wk</div>
       </div>
+      <div class="live-dot" title="live calculation"></div>
     </div>
 
     <div class="stats">
@@ -339,5 +356,29 @@
 
   <div class="handle">@g0t4</div>
 </div>
+<script>
+  const JOIN_DATE = new Date('2010-01-11T18:41:24Z');
+  const HOURS_PER_WEEK = 40;
+
+  function calc() {
+    const now = new Date();
+    const ms = now - JOIN_DATE;
+    const weeks = ms / (7 * 24 * 60 * 60 * 1000);
+    const hours = Math.floor(weeks * HOURS_PER_WEEK);
+    const years = Math.floor(ms / (365.25 * 24 * 60 * 60 * 1000));
+    const multiple = (hours / 10000).toFixed(1);
+    return { hours, years, multiple };
+  }
+
+  function update() {
+    const { hours, years, multiple } = calc();
+    document.getElementById('years-number').textContent = years;
+    document.getElementById('exp-hours-value').textContent = hours.toLocaleString();
+    document.getElementById('exp-multiple-value').textContent = multiple + '×';
+  }
+
+  update();
+  setInterval(update, 60 * 1000);
+</script>
 </body>
 </html>
